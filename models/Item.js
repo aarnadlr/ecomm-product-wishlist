@@ -12,8 +12,14 @@ const ItemSchema = new Schema({
 	date:{
   	type: Date,
 		default: Date.now
+	},
+	color:{
+  	type:String,
+		required: true,
+		default:'white'
 	}
 });
 
 //Make available/ export the Item === the completed model containing the schema
+// Item is the mongoDB `collection`
 module.exports = Item = mongoose.model('item', ItemSchema);
