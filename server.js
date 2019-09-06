@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 
 const items = require('./routes/api/items');
+const bikes = require('./routes/api/bikes');
 
 const app = express();
 
@@ -21,8 +22,9 @@ mongoose
 
 //Use express Router. Define 👇this route prefix for all routes:
 // *ADD* THIS PATH SEGMENT to all dev-coded routes, when deployed
-// "When a user hits this URL, jump them right to `items` routes (join them together)
+// ⭐️"When a user hits this URL, jump them right to `items` routes (join them together)
 app.use('/api/items', items);
+app.use('/api/bikes', bikes);
 
 const port = process.env.PORT || 5000;
 

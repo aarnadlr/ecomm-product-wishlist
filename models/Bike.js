@@ -2,9 +2,9 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 //Create ItemSchema from a Schema defined object
-const ItemSchema = new Schema({
+const BikeSchema = new Schema({
   // We will have a field "name": The name will have two rules/requirements:
-  name: {
+  brand: {
     type: String,
     required: true
   },
@@ -16,10 +16,10 @@ const ItemSchema = new Schema({
 	color:{
   	type:String,
 		required: true,
-		default:'white'
+		default:'not available'
 	}
 });
 
 //Make available/ export the Item === the completed model containing the schema
-// Item is the mongoDB `collection`
-module.exports = Item = mongoose.model('item', ItemSchema, 'items');
+// This third parameter forces the name of the mongoDB `collection`, to avoid auto-pluralization:
+module.exports = Bike = mongoose.model('bike', BikeSchema, 'bikes');
