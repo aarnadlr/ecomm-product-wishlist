@@ -15,6 +15,9 @@ router.get('/', (req, res) => {
     .sort({ date: -1 })
     .then(items => res.json(items));
 });
+router.get('*', (req, res) => {
+  res.end('this is an unsupported route')
+});
 
 // @route  POST api/items
 // @desc   Add an Item
