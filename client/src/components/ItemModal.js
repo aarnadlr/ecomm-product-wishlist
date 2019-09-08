@@ -20,11 +20,8 @@ const ItemModal = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    const newItem = {
-			id: uuid(),
-    	name: itemInput
-		}
-    dispatch(addItem(newItem));
+
+    dispatch(addItem(itemInput));
     toggle();
   };
 
