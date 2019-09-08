@@ -1,36 +1,32 @@
+import {ADD_ITEM, DELETE_ITEM, GET_ITEMS, ITEMS_LOADED, ITEMS_LOADING} from '../actions/actions';
 import uuid from 'uuid';
-import { ADD_ITEM, DELETE_ITEM, GET_ITEMS } from '../actions/actions';
 
 //state
 const initialState = {
-  items: [
-    {
-      id: uuid(),
-      name: 'Redux Eggs'
-    },
-    {
-      id: uuid(),
-      name: 'Redux Beer'
-    },
-    {
-      id: uuid(),
-      name: 'Redux Butter'
-    }
-  ]
+  items: [],
+  isLoading: false
 };
 
 //reducer
 const itemReducer = (state = initialState, action) => {
   switch (action.type) {
+
+    case ITEMS_LOADING:
+      return {...state, isLoading: true};
+    case ITEMS_LOADED:
+      return {...state, isLoading: false}
     case GET_ITEMS:
-      return { ...state };
+      return { ...state, items: action.payload };
+
     case ADD_ITEM:
-      return { items:[...state.items, action.payload] };
-    //
+      return { items: [...state.items, action.payload] };
+
     case DELETE_ITEM:
-      return { items:state.items.filter(item=>{
-        return item.id !== action.payload
-        }) };
+      return {
+        items: state.items.filter(item => {
+          return item.id !== action.payload;
+        })
+      };
 
     default:
       return state;

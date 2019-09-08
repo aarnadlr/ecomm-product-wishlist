@@ -3,7 +3,6 @@ import { Button, Modal, ModalHeader, ModalBody, Form, Input } from 'reactstrap';
 import { addItem } from '../redux/actions/actions';
 import { useDispatch } from 'react-redux';
 import FormGroup from 'reactstrap/es/FormGroup';
-import uuid from 'uuid';
 
 const ItemModal = () => {
   const [isOpen, setIsOpen] = useState(false);

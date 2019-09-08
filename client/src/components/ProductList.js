@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { Container, ListGroup, ListGroupItem, Button } from 'reactstrap';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { useSelector, useDispatch } from 'react-redux';
-import { deleteItem, getItems } from '../redux/actions/actions';
+import {deleteItem, getItems, ITEMS_LOADING, setItemsLoading} from '../redux/actions/actions';
 import _ from 'lodash';
 
 const ProductList = () => {
@@ -21,30 +21,33 @@ const ProductList = () => {
 
          	{ _.isEmpty(items) && console.log('EMPTY!')}
 
-          {items &&
-            items.map(itemObj => {
+          {items && items.map(itemObj => {
               return (
+
                 <CSSTransition
-                  key={itemObj.id}
+                  key={itemObj._id}
                   timeout={500}
                   classNames={'fade'}
                 >
-                  <ListGroupItem>
+                  <ListGroupItem style={{display:"flex", justifyContent:'space-between'}}>
+
+                    {itemObj.name}
+
                     <Button
                       className={'remove-btn'}
                       color={'danger'}
                       size={'sm'}
                       onClick={() => {
-                        dispatch(deleteItem(itemObj.id));
+                        dispatch(deleteItem(itemObj._id));
                       }}
                     >
-                      &times;
+                      DELETE
                     </Button>
-                    {itemObj.name}
                   </ListGroupItem>
                 </CSSTransition>
               );
             })}
+
         </TransitionGroup>
       </ListGroup>
     </Container>
