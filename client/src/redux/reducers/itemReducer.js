@@ -1,5 +1,5 @@
 import {ADD_ITEM, DELETE_ITEM, GET_ITEMS, ITEMS_LOADED, ITEMS_LOADING} from '../actions/actions';
-import uuid from 'uuid';
+// import uuid from 'uuid';
 
 //state
 const initialState = {
@@ -13,13 +13,15 @@ const itemReducer = (state = initialState, action) => {
 
     case ITEMS_LOADING:
       return {...state, isLoading: true};
+
     case ITEMS_LOADED:
-      return {...state, isLoading: false}
+      return {...state, isLoading: false};
+
     case GET_ITEMS:
       return { ...state, items: action.payload };
 
     case ADD_ITEM:
-      return { items: [...state.items, action.payload] };
+      return { ...state, items: [...state.items, action.payload] };
 
     case DELETE_ITEM:
       return {

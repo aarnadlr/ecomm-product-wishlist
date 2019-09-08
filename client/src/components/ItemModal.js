@@ -20,7 +20,12 @@ const ItemModal = () => {
   const handleSubmit = e => {
     e.preventDefault();
 
-    dispatch(addItem(itemInput));
+    const newItemObj = {
+    	name: itemInput
+		};
+
+    dispatch(addItem(newItemObj));
+
     toggle();
   };
 
@@ -54,7 +59,7 @@ const ItemModal = () => {
 
               />
 
-              <Button style={{margin:'0 0 0 8px'}}>SAVE</Button>
+              <Button type={'submit'} style={{margin:'0 0 0 8px'}}>SAVE</Button>
 
             </FormGroup>
           </Form>

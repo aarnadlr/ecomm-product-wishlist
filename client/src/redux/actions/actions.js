@@ -1,4 +1,3 @@
-import uuid from 'uuid';
 import axios from 'axios';
 
 export const GET_ITEMS = '[ProductList]GET_ITEMS';
@@ -15,32 +14,32 @@ export const setItemsLoading = () => {
 
 export const getItems = () => dispatch => {
   dispatch(setItemsLoading());
-  axios.get('/api/items')
-    .then(res=>dispatch({
-      type: GET_ITEMS,
-      //MongoDB data (ARRAY) placed into payload, toward reducer
-      payload: res.data
-    }))
-    .then(()=>dispatch({type:ITEMS_LOADED}))
-
+  axios
+    .get('/api/items')
+    .then(res =>
+      dispatch({
+        type: GET_ITEMS,
+        //MongoDB data (ARRAY) placed into payload, toward reducer
+        payload: res.data
+      })
+    )
+    .then(() => dispatch({ type: ITEMS_LOADED }));
 };
 
-export const addItem = itemInputted => {
-  //make the item object for store:
-  const newItem = {
-    id: uuid(),
-    name: itemInputted
-  };
+export const addItem = (newItemObj) => dispatch => {
+  axios.post('/api/items', newItemObj)
+    .then(res=>
+      dispatch({
+        type:ADD_ITEM,
+        payload: res.data
+      }));
+}
 
-  return {
-    type: ADD_ITEM,
-    payload: newItem
-  };
-};
-
-export const deleteItem = id => {
-  return {
-    type: DELETE_ITEM,
-    payload: id
-  };
+export const deleteItem = id => dispatch => {
+  axios.delete(`/${id}`).then(res =>
+    dispatch({
+      type: DELETE_ITEM,
+      payload: id
+    })
+  );
 };

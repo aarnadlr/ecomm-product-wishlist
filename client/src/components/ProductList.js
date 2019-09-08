@@ -2,9 +2,11 @@ import React, { useEffect } from 'react';
 import { Container, ListGroup, ListGroupItem, Button } from 'reactstrap';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { useSelector, useDispatch } from 'react-redux';
-import {deleteItem, getItems, ITEMS_LOADING, setItemsLoading} from '../redux/actions/actions';
+import {deleteItem, getItems,
+  // ITEMS_LOADING, setItemsLoading
+} from '../redux/actions/actions';
 import _ from 'lodash';
-
+import uuid from 'uuid'
 const ProductList = () => {
   const items = useSelector(state => state.item.items);
   const dispatch = useDispatch();
@@ -25,14 +27,13 @@ const ProductList = () => {
               return (
 
                 <CSSTransition
-                  key={itemObj._id}
+                  key={uuid()}
                   timeout={500}
                   classNames={'fade'}
                 >
                   <ListGroupItem style={{display:"flex", justifyContent:'space-between'}}>
 
-                    {itemObj.name}
-
+                    {itemObj && itemObj.name}
                     <Button
                       className={'remove-btn'}
                       color={'danger'}
