@@ -23,15 +23,9 @@ const initialState = {
 const itemReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_ITEMS:
-      // return { items:[...state.items, {id:uuid(), name:'New from GETITEMS action type'}] };
       return { ...state };
     case ADD_ITEM:
-      // return { ...state, [...items, {id:uuid(), name:action.payload.name} ] };
-      // return { [...items, {id:uuid(), name:action.payload.name} ] };
-      // return { [...items] };
-      // return { [...state.items] };
-      // return { ...state.items, items.concat({id: uuid()}) };
-      return { items:[...state.items, {id:uuid(), name: action.payload}] };
+      return { items:[...state.items, action.payload] };
     //
     case DELETE_ITEM:
       return { items:state.items.filter(item=>{

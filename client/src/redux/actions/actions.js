@@ -8,10 +8,10 @@ export const getItems = () => {
   };
 };
 
-export const addItem = (name) => {
+export const addItem = (itemObj) => {
   return {
     type: ADD_ITEM,
-		payload: name
+		payload: itemObj
   };
 };
 

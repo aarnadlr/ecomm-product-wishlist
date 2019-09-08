@@ -10,7 +10,7 @@ import {
   Container
 } from 'reactstrap';
 
-const AppNavBar = props => {
+const AppNavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggle = () => {

@@ -2,7 +2,8 @@ import React, { useEffect } from 'react';
 import { Container, ListGroup, ListGroupItem, Button } from 'reactstrap';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { useSelector, useDispatch } from 'react-redux';
-import { addItem, deleteItem, getItems } from '../redux/actions/actions';
+import { deleteItem, getItems } from '../redux/actions/actions';
+import _ from 'lodash';
 
 const ProductList = () => {
   const items = useSelector(state => state.item.items);
@@ -10,26 +11,16 @@ const ProductList = () => {
 
   useEffect(() => {
     dispatch(getItems());
-  }, []);
+  },[dispatch]);
 
   return (
     <Container>
-      <Button
-        color={'dark'}
-        style={{ marginBottom: '2rem' }}
-        onClick={() => {
-          const name = prompt('Enter item');
-
-          if (name) {
-            dispatch(addItem(name));
-          }
-        }}
-      >
-        Click
-      </Button>
 
       <ListGroup>
         <TransitionGroup className={'shopping-list'}>
+
+         	{ _.isEmpty(items) && console.log('EMPTY!')}
+
           {items &&
             items.map(itemObj => {
               return (
