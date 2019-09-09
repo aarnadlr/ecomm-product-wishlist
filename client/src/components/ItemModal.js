@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, Form, Input } from 'reactstrap';
-import { addItem } from '../redux/actions/actions';
+import {addItem, addItemBtnClicked} from '../redux/actions/actions';
 import { useDispatch } from 'react-redux';
 import FormGroup from 'reactstrap/es/FormGroup';
 
@@ -12,6 +12,11 @@ const ItemModal = () => {
   const toggle = () => {
     setIsOpen(!isOpen);
   };
+
+  const handleAddItemBtn = ()=>{
+    dispatch(addItemBtnClicked())
+    toggle();
+  }
 
   const handleChange = e => {
     setItemInput(e.target.value);
@@ -33,7 +38,8 @@ const ItemModal = () => {
     <div>
       <Button
         color={'dark'}
-        onClick={toggle}
+        onClick={handleAddItemBtn}
+
         style={{
           marginBottom: '2rem',
           textTransform: 'uppercase',

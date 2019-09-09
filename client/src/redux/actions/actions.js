@@ -5,14 +5,22 @@ export const ADD_ITEM = '[ItemModal]ADD_ITEM';
 export const DELETE_ITEM = '[ProductList]DELETE_ITEM';
 export const ITEMS_LOADING = '[ProductList]ITEMS_LOADING';
 export const ITEMS_LOADED = 'ITEMS_LOADED!';
+export const ADD_ITEM_BTN_CLICKED = '[ItemModal]ADD_ITEM_BTN_CLICKED';
 
+export const addItemBtnClicked = ()=>{
+  return{
+    type: ADD_ITEM_BTN_CLICKED
+  }
+}
 export const setItemsLoading = () => {
   return {
     type: ITEMS_LOADING
   };
 };
 
-export const getItems = () => dispatch => {
+//THUNK 1: allows the action creator func to return a FUNC with dispatch passed to it.
+// The async axios request finishes, receives the dispatch from the functino param, .THEN dispatches
+export const getItems = () => (dispatch, getState) => {
   dispatch(setItemsLoading());
   axios
     .get('/api/items')
@@ -26,7 +34,10 @@ export const getItems = () => dispatch => {
     .then(() => dispatch({ type: ITEMS_LOADED }));
 };
 
-export const addItem = (newItemObj) => dispatch => {
+//THUNK 2: allows the action creator func to return a FUNC with dispatch passed to it.
+// The async axios request finishes, receives the dispatch from the functino param, .THEN dispatches
+export const addItem = (newItemObj) => (dispatch, getState) => {
+  // pass object (newItemObj) back via the BODY, back to MongoDB
   axios.post('/api/items', newItemObj)
     .then(res=>
       dispatch({
@@ -35,7 +46,9 @@ export const addItem = (newItemObj) => dispatch => {
       }));
 }
 
-export const deleteItem = id => dispatch => {
+//THUNK 3: allows the action creator func to return a FUNC with dispatch passed to it.
+// The async axios request finishes, receives the dispatch from the functino param, .THEN dispatches
+export const deleteItem = id => (dispatch, getState) => {
   axios.delete(`/${id}`).then(res =>
     dispatch({
       type: DELETE_ITEM,
