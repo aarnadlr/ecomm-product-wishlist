@@ -25,11 +25,7 @@ const ItemModal = () => {
   const handleSubmit = e => {
     e.preventDefault();
 
-    const newItemObj = {
-    	name: itemInput
-		};
-
-    dispatch(addItem(newItemObj));
+    dispatch(addItem(itemInput));
 
     toggle();
   };
