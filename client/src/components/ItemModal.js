@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, Form, Input } from 'reactstrap';
-import {addItem, addItemBtnClicked} from '../redux/actions/actions';
+import { addItem, addItemBtnClicked } from '../redux/actions/actions';
 import { useDispatch } from 'react-redux';
 import FormGroup from 'reactstrap/es/FormGroup';
 
@@ -13,10 +13,10 @@ const ItemModal = () => {
     setIsOpen(!isOpen);
   };
 
-  const handleAddItemBtn = ()=>{
-    dispatch(addItemBtnClicked())
+  const handleAddItemBtn = () => {
+    dispatch(addItemBtnClicked());
     toggle();
-  }
+  };
 
   const handleChange = e => {
     setItemInput(e.target.value);
@@ -35,7 +35,6 @@ const ItemModal = () => {
       <Button
         color={'dark'}
         onClick={handleAddItemBtn}
-
         style={{
           marginBottom: '2rem',
           textTransform: 'uppercase',
@@ -45,24 +44,24 @@ const ItemModal = () => {
         Add Item
       </Button>
 
-      <Modal isOpen={isOpen}>
-        <ModalHeader toggle={toggle}>Add to your Product WishList</ModalHeader>
+      <Modal isOpen={isOpen} toggle={toggle} autoFocus={false}>
+        <ModalHeader>Add to your Product WishList</ModalHeader>
 
         <ModalBody>
           <Form onSubmit={handleSubmit}>
-            <FormGroup style={{display:'flex'}}>
-
-							<Input
+            <FormGroup style={{ display: 'flex' }}>
+              <Input
+								autoFocus
                 type={'text'}
                 name={'name'}
                 id={'item'}
                 placeholder={'Add Wishlist item'}
                 onChange={handleChange}
-
               />
 
-              <Button type={'submit'} style={{margin:'0 0 0 8px'}}>SAVE</Button>
-
+              <Button type={'submit'} style={{ margin: '0 0 0 8px' }}>
+                SAVE
+              </Button>
             </FormGroup>
           </Form>
         </ModalBody>
