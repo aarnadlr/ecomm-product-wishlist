@@ -23,6 +23,7 @@ const ProductList = () => {
 
          	{ _.isEmpty(items) && console.log('EMPTY!')}
 
+
           {items && items.map(itemObj => {
               return (
 

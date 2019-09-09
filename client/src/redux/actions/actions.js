@@ -51,11 +51,11 @@ export const addItem = itemInput => (dispatch, getState) => {
 
 //THUNK 3: allows the action creator func to return a FUNC with dispatch passed to it.
 // The async axios request finishes, receives the dispatch from the functino param, .THEN dispatches
-export const deleteItem = id => (dispatch, getState) => {
-  axios.delete(`/${id}`).then(res =>
+export const deleteItem = _id => (dispatch, getState) => {
+  axios.delete(`/api/items/${_id}`).then(res =>
     dispatch({
       type: DELETE_ITEM,
-      payload: id
+      payload: _id
     })
   );
 };
