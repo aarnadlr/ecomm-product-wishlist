@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "name": "product-wishlist",
+  "builds": [
+    { "src": "client/**/*", "use": "@now/static" },
+    { "src": "routes/api/*.js", "use": "@now/node" },
+    { "src": "server.js", "use": "@now/node-server" }
+  ],
+  "routes": [{ "src": "/", "dest": "client/build/index.html" }]
+}
